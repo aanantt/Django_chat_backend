@@ -1,6 +1,8 @@
 from django.http import JsonResponse
 from django.shortcuts import render
-
+import uuid
+import datetime
+import pyrebase
 # Create your views here.
 from django.contrib.auth.models import User
 from django.shortcuts import render
@@ -9,9 +11,10 @@ from rest_framework.decorators import api_view
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import UserAllChats, PrivateChatMessage, UserProfile, GroupChat, GroupChatMessage
+from .models import UserAllChats, PrivateChatMessage, UserProfile, GroupChat, GroupChatMessage, CheckIng
 from .serializers import UserSerializer, AddorGetListSerializers, PrivateChatMessageSerializer, SerializeUser, \
     GroupChatSerializer, GroupChatMessageSerializer
+
 
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
@@ -149,16 +152,15 @@ class UpdateDetails(APIView):
 
     def put(self, request):
         image = self.request.data
-        print(image.get("avatar"))
-        print(self.request.user.username)
         uf = self.request.user
         u, _ = UserProfile.objects.get_or_create(user=self.request.user)
         if u:
             if image.get("avatar"):
-               u.avatar = image.get("avatar")
-               u.save()
+                print(image.get("avatar"))
+                u.avatar = image.get("avatar")
+                u.save()
             print(image.get("username"))
-            uf.username= image.get("username")
+            uf.username = image.get("username")
             uf.save()
             return Response(status=status.HTTP_200_OK)
 
@@ -196,4 +198,4 @@ class GroupChatMessageList(APIView):
         return Response(status=status.HTTP_200_OK)
 
 
- 
+

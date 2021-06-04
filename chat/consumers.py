@@ -13,7 +13,6 @@ class PrivateChatConsumer(AsyncWebsocketConsumer):
     async def connect(self):
         self.user1 = self.scope['url_route']['kwargs']['me']
         self.user2 = self.scope['url_route']['kwargs']['notme']
-        string = ''
         if self.user1 > self.user2:
             string = f"{self.user1}_{self.user2}"
         else:
@@ -288,8 +287,8 @@ class GroupChatConsumer(AsyncWebsocketConsumer):
                 'type': 'group.message',
                 'message': payload.message,
                 'group': group,
-                'userid':user.id,
-                'username':user.username,
+                'userid': user.id,
+                'username': user.username,
                 'id': payload.pk,
                 'isfile': payload.isfile,
                 'file': str(payload.file)
@@ -307,16 +306,16 @@ class GroupChatConsumer(AsyncWebsocketConsumer):
         username = event['username']
         group = event['group']
         print(id)
-        data={
-            "id":id,
-            "isfile":isfile,
-            "file":file,
-            "message":message,
-            "sender":{
-                "id":userid,
-                'username':username
-             }
-             
+        data = {
+            "id": id,
+            "isfile": isfile,
+            "file": file,
+            "message": message,
+            "sender": {
+                "id": userid,
+                'username': username
+            }
+
         }
         # Send message to WebSocket
         await self.send(text_data=json.dumps(data))
@@ -347,12 +346,9 @@ class GroupChatConsumer(AsyncWebsocketConsumer):
         return message
 
     @sync_to_async
-    def getUser(self,id):
+    def getUser(self, id):
         user = User.objects.get(id=id)
         return user
-
-
-
 
 
 class GroupStatusConsumer(AsyncWebsocketConsumer):
@@ -367,9 +363,6 @@ class GroupStatusConsumer(AsyncWebsocketConsumer):
             self.room_group_name,
             self.channel_name
         )
-
-        print(f"CHANNEL : {self.room_group_name}")
-
         await self.accept()
 
     async def disconnect(self, close_code):
@@ -389,8 +382,6 @@ class GroupStatusConsumer(AsyncWebsocketConsumer):
         # Send message to room group
 
         username = await self.getUsername(sender)
-
-        print(username)
         await self.channel_layer.group_send(
             self.room_group_name,
             {

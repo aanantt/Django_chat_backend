@@ -98,16 +98,15 @@ DATABASES = {
 
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
 
+#         'NAME': 'afmujroq',
 
-#         'NAME': 'lvofvepx',
+#         'USER': 'afmujroq',
 
-#         'USER': 'lvofvepx',
+#         'PASSWORD': 'gQ56GwULEMFQHrfbfw8PNHGZcExNnmph',
 
-#         'PASSWORD': 'JcBn0gCIaXLO5g7wG1EaK47061GyRPlq',
+#         'HOST': 'batyr.db.elephantsql.com',
 
-#         'HOST': '<db_hostname_or_ip>',
-
-#         'PORT': '<db_port>',
+#         'PORT': '5432',
 
 #     }
 

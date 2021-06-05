@@ -28,5 +28,4 @@ Then run the [Flutter Code](https://github.com/aanantt/flutter_chat_frontend) an
 
 ### Screenshots:
 ![](https://i.ibb.co/P9GdqkL/Screenshot-from-2021-06-04-20-46-12.png)
-
 ![](https://i.ibb.co/5F7Sf79/Screenshot-from-2021-06-04-20-49-53.png)
